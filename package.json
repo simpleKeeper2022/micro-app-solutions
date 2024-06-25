@@ -1,0 +1,23 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --mode prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simpleKeeper2022/micro-app-solutions.git"
+  },
+  "keywords": [
+    "'microApp'"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simpleKeeper2022/micro-app-solutions/issues"
+  },
+  "homepage": "https://github.com/simpleKeeper2022/micro-app-solutions#readme"
+}
