@@ -3,10 +3,10 @@
 const microApps = [
   {
     name: 'vue2',
-    entry: process.env.VUE_APP_ENTRY1,
+    entry: process.env.VUE_APP_ENTRY2,
     container: '#microapp',
     activeRule: '/vue2',
-    props: {}
+    props: { FOR_MAIN: true }
   }
 ]
 const micrConfig = {
@@ -42,7 +42,7 @@ const micrConfig = {
 const fetchOptions = {
   prefetch: true, // 预加载方式
   singular: false,
-  // sandbox: { experimentalStyleIsolation: true }, // 可选，是否开启沙箱，默认为 true。// 从而确保微应用的样式不会对全局造成影响。
+  sandbox: { experimentalStyleIsolation: true }, // 可选，是否开启沙箱，默认为 true。// 从而确保微应用的样式不会对全局造成影响。
   // qiankun 通过fetch 请求'oa.fenqile.com/res/static/common 有跨域问题, 所以使用 script 标签加载
   excludeAssetFilter: (url) => url.includes('XXXX/res/static/common'),
   fetch(url, ...args) {

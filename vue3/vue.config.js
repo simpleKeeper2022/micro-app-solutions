@@ -5,12 +5,15 @@ function resolve(dir) {
 
 module.exports = {
   // 基本路径
-  publicPath: 'https://testmicro.oa.fenqfenle.com/',
+  publicPath: '/',
   // 输出文件目录
   outputDir: 'dist',
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === 'development',
   devServer: {
+    client: {
+      overlay: false
+    },
     https: true,
     port: 9010,
     allowedHosts: 'all',

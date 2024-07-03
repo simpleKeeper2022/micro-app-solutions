@@ -5,12 +5,15 @@ function resolve(dir) {
 
 module.exports = {
   // 基本路径
-  publicPath: './',
+  publicPath: '/',
   // 输出文件目录
   outputDir: 'dist',
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV === 'development',
   devServer: {
+    client: {
+      overlay: false
+    },
     https: true,
     port: 9020,
     allowedHosts: 'all',
@@ -46,7 +49,20 @@ module.exports = {
       }
     }
   },
-  chainWebpack: (config) => {},
+  chainWebpack: (config) => {
+    config.module
+      .rule('fonts')
+      .test(/.(ttf|otf|eot|woff|woff2)$/)
+      .use('url-loader')
+      .loader('url-loader')
+      .tap((options) => {
+        options = {
+          // limit: 10000,
+          name: '/static/fonts/[name].[ext]'
+        }
+        return options
+      })
+  },
   // rem 的配置
   css: {}
 }

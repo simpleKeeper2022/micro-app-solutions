@@ -33,32 +33,26 @@ const menuTestDataList = {
   ],
   vue2: [
     {
-      name: 'menuTest1',
-      path: '/vue2#/menuTest1',
+      name: 'menuVue21',
+      path: '/vue2#/menuvue21',
       text: 'vue2菜单1',
       icon: 'UserFilled'
     },
     {
-      name: 'menuTest2',
-      path: '/vue2#/menuTest2',
+      name: 'menuVue22',
+      path: '/vue2#/menuvue22',
       text: 'vue2菜单2',
       icon: 'UserFilled'
     },
     {
-      name: 'menuTest3',
-      path: '/vue2#/menuTest3',
+      name: 'menuVue23',
+      path: '/vue2#/menuvue23',
       text: 'vue2菜单3',
       icon: 'UserFilled'
     },
     {
-      name: 'menuTest4',
-      path: '/vue2#/menuTest4',
-      text: 'vue2菜单5',
-      icon: 'UserFilled'
-    },
-    {
-      name: 'menuTest5',
-      path: '/vue2#/menuTest5',
+      name: 'menuVue24',
+      path: '/vue2#/menuvue24',
       text: 'vue2菜单5',
       icon: 'UserFilled'
     }

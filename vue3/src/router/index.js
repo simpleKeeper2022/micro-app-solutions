@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import useRootStore from '@/store/rootStore'
 
 const routes = [
   {
@@ -55,4 +56,18 @@ const router = createRouter({
     return { top: 0 }
   }
 })
+/* eslint-disable */
+router.beforeEach((to, from, next) => {
+  console.log(to, from, history.state, '从vue2跳转到vue3')
+  const store = useRootStore()
+  if (store.FOR_MAIN) {
+    if (from.fullPath === to.fullPath) {
+      next(false) // 调用 next 并传递 false 来阻止导航
+      return // 提前返回，避免继续执行
+    }
+    // window.history.pushState(null, '', '')
+  }
+  next()
+})
+
 export default router

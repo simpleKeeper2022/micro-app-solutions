@@ -2,10 +2,6 @@
 import { initGlobalState } from 'qiankun'
 
 const initialState = {
-  userInfo: null,
-  menuToggle: false,
-  cacheTabInfo: null,
-  reNewRobot: false,
   witchChange: '',
   cache_menu: []
 }

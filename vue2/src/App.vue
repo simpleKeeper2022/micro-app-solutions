@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <transition name="fade-transform" mode="out-in">
+      <keep-alive :include="FOR_MAIN ? KEEPALIVE_FOR_MAIN : aliveList">
+        <router-view :key="$route.fullPath"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { mapState } from 'vuex'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      aliveList: ['menuVue21', 'menuVue22', 'menuVue23', 'menuVue24']
+    }
+  },
+  computed: {
+    ...mapState(['KEEPALIVE_FOR_MAIN', 'FOR_MAIN'])
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.container {
+  width: 50%;
+  margin-left: 5%;
+  height: 100vh;
+  padding-top: 100px;
 }
 </style>

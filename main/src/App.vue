@@ -53,17 +53,7 @@ export default {
   },
   computed: {},
   created() {},
-  mounted() {
-    // this.$globalState.onGlobalStateChange((state) => {
-    //   // state: 变更后的状态; prev 变更前的状态
-    //   if (state.witchChange === 'menuToggle') {
-    //     // bus.emit('changeMenuToggle', state.menuToggle)
-    //   } else if (state.witchChange === 'moreTabs') {
-    //     // 新客服 多用户多tab缓存标签
-    //     // bus.emit('dealMoreTabs', state.cacheTabInfo)
-    //   }
-    // })
-  },
+  mounted() {},
   methods: {
     loadvue3app() {
       if (!this.isVue3Load) {
@@ -72,7 +62,7 @@ export default {
             name: 'vue3',
             container: this.$refs.vue3app,
             entry: process.env.VUE_APP_ENTRY1,
-            props: {},
+            props: { FOR_MAIN: true },
             activeRule: '/vue3'
           },
           fetchOptions
@@ -85,15 +75,12 @@ export default {
     '$route.path': function (newVal) {
       this.isVue3 = false
       if (newVal) {
-        // this.$nextTick(() => {
-        //   if (this.$refs.leftmenu) {
-        //     this.$refs.leftmenu.menuToggle = false
-        //     this.$refs.leftmenu.changeMenuToggle(false)
-        //   }
-        // })
         if (newVal.includes('vue3')) {
           this.isVue3 = true
-          this.loadvue3app()
+          const ticketDrawerDiv = document.getElementById('__qiankun_microapp_wrapper_for_vue_3__')
+          if (!ticketDrawerDiv) {
+            this.loadvue3app()
+          }
         }
       }
     }

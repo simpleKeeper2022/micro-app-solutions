@@ -9,6 +9,9 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import App from './App.vue'
 import router from './router'
 
+import useRootStore from '@/store/rootStore'
+let store = null
+
 let app = null
 const init = (props = {}) => {
   const { container } = props
@@ -19,9 +22,10 @@ const init = (props = {}) => {
   for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
   }
+  store = useRootStore()
   app.mount(container ? container.querySelector('#app') : '#app')
 }
-// eslint-disable-next-line no-underscore-dangle
+// eslint-disable-next-line
 if (window.__POWERED_BY_QIANKUN__) {
   // eslint-disable-next-line
   __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
@@ -33,18 +37,23 @@ if (window.__POWERED_BY_QIANKUN__) {
  * 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等。
  */
 export async function bootstrap(props) {
-  console.log('service工程vuebootstrap时的props', props)
+  console.log('vue3工程vuebootstrap时的props', props)
 }
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
 export async function mount(props) {
-  console.log('app是否被注销', props)
   init(props)
   app.config.globalProperties.$globalState = props
+  store.SET_FOR_MAIN(props.FOR_MAIN)
   props.onGlobalStateChange((state, prev) => {
     // state: 变更后的状态; prev 变更前的状态
-    console.log('service应用接收到的state: 变更后的状态和变更前的状态', state, prev)
+    console.log('vue3子应用接收到的state: 变更后的状态和变更前的状态', state, prev)
+    if (state.witchChange === 'clearCache') {
+      store.SET_CLEARCACHE(true)
+    } else if (state.witchChange === 'changeCacheMenu') {
+      store.SET_KEEPALIVE_FOR_MAIN(state.vue3_cacheMenu)
+    }
   })
 }
 /**

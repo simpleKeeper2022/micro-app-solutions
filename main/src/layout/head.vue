@@ -12,8 +12,8 @@
         @select="changeRoute"
       >
         <el-menu-item index="/home">首页</el-menu-item>
-        <el-menu-item index="/vue3">Vue3子应用</el-menu-item>
-        <el-menu-item index="/vue2">Vue2子应用</el-menu-item>
+        <el-menu-item index="vue3#/menuTest1">Vue3子应用</el-menu-item>
+        <el-menu-item index="/vue2#/menuvue21">Vue2子应用</el-menu-item>
       </el-menu>
     </div>
   </div>

@@ -12,6 +12,9 @@ module.exports = {
   productionSourceMap: false,
   lintOnSave: true,
   devServer: {
+    client: {
+      overlay: false
+    },
     https: true,
     port: 9000,
     allowedHosts: 'all',

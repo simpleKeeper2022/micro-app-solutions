@@ -15,6 +15,14 @@ import router from './router'
 
 const app = createApp(App)
 
+app.config.globalProperties.$globalState = actions
+// 本地环境开启devTools
+// if (process.env.NODE_ENV === 'development') {
+//   app.config.devtools = true
+// }
+
+// actions.offGlobalStateChange()
+
 app.use(createPinia())
 app.use(router)
 app.use(ElementPlus, { size: 'small' }, { locale: zhCn })
@@ -26,10 +34,11 @@ registerMicroApps(microApps, micrConfig)
 start(fetchOptions)
 // 监听异常
 addGlobalUncaughtErrorHandler((event) => {
-  console.log(event)
+  console.error(event)
+  console.trace()
   const { msg } = event
   if (msg && msg.includes('died in status LOADING_SOURCE_CODE')) {
-    console.log('微应用加载失败，请检查应用是否可运行')
+    console.error('微应用加载失败，请检查应用是否可运行')
   }
 })
 
